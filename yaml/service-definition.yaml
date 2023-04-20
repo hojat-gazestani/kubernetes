@@ -1,0 +1,15 @@
+# kubernetes-json-schema
+apiVersion: v1
+kind: Service
+metadata:
+  name: BACK-END
+
+spec:
+  type: ClusterIP
+  ports:
+  - tagetPort:80
+    ports:80
+
+  selector:
+    app: MYAPP
+    type: BACK-END

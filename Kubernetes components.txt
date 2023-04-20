@@ -1,0 +1,105 @@
+Scale resources vertically and horizontally easily and quickly.
+ETCD, nodes, 
+
+Master:
+	controls and manages the set of worker nodes
+	cluster management and the API ...
+
+	Kube-apiserve:
+		validates and provides configuration data for the API objects (pods, services, replication controllers)
+		provides REST operations and also the frontend of the cluster. 
+
+	Kube-api:
+		server process runs on the master node
+
+	kube-scheduler:
+		assigns nodes to newly created pods.
+
+	Kubelet:
+		controls and maintains a set of pods by watching for pod specs through the Kubernetes API server
+		It preserves the pod lifecycle by ensuring that a given set of containers are all running as they should. 
+		The kubelet runs on each node and enables the communication between the master and slave nodes.
+
+	Kubectl:
+		is used to run commands against Kubernetes clusters. 
+
+	controller manager:
+		is a daemon that is used for embedding core control loops, garbage collection, and Namespace creation.
+		It enables the running of multiple processes on the master node even though they are compiled to run as a single process.
+		Types:
+			endpoints controller, service accounts controller, namespace controller, node controller, token controller, and replication controller.
+
+	Kube-proxy:
+		Kube-proxy is an implementation of a load balancer and network proxy used to support service abstraction with other networking operations. Kube-proxy is responsible for directing traffic to the right container based on IP and the port number of incoming requests.
+
+
+
+Worker (node):
+	represents a single machine in a cluster (physical machine, virtual machine)
+	node status (Address, Condition, Capacity, and Info.)
+
+pod:
+	Pods are high-level structures that wrap one or more containers. (containers are not run directly in Kubernetes)
+	Containers in the same pod share a local network and the same resources, allowing them to easily communicate with other containers in the same pod 
+
+Container resource monitoring:
+	collects the metrics and tracks the health of containerized applications and microservices environments
+
+replication controller:
+	If the pods die, they won't be spawned again unless wrapped around a replica set. 
+
+Replica Set:
+	 This kind of support has some selector types and supports the equality-based and the set-based selectors. 
+
+	It allows filtering by label values and keys. To match the object, they have to satisfy all the specified label constraints.
+
+different services within Kubernetes:
+	Cluster IP services				: provides a service inside a cluster (with no external access) t
+	Node Port services				: get external traffic directly to your service.
+	External Name Creation services	:
+	Load Balancer services			: expose services to the internet, creates a single IP address that forwards all traffic to your service. 
+
+Ingress network:
+	allows users to access your Kubernetes services from outside the Kubernetes cluster.
+	an API object that provides the routing rules- HTTPS/ HTTP.
+	can easily set up the rules for routing traffic without creating a bunch of load balancers or exposing each service to the nodes.
+
+Daemon sets:
+	set of pods that runs only once on a host
+	They are used for host layer attributes like a network or for monitoring a network, which you may not need to run on a host more than once.
+
+Heapster:
+	is a performance monitoring and metrics collection system for data collected by the Kublet. 
+	This aggregator is natively supported and runs like any other pod within a Kubernetes cluster,
+
+Namespace in Kubernetes:
+	used for dividing cluster resources between multiple users. 
+	initial namespaces from which Kubernetes starts are (Default, Kube – system, Kube – public)
+
+etcd:
+	distributed key-value store for all of its data,
+	including metadata and configuration data, and allows nodes in Kubernetes clusters to read and write data. 
+	Etcd represents the state of a cluster at a specific moment in time
+
+headless service:
+	therefore allowing you to directly reach pods without having to access them through a proxy. It is useful when neither load balancing nor a single Service IP is required. 
+
+federated clusters:
+	The aggregation of multiple clusters that treat them as a single logical cluster 
+
+	Cross cluster that provides the ability to have DNS and Load Balancer with backend from the participating clusters. 
+
+	Users can sync resources across different clusters in order to deploy the same deployment set across the various clusters.
+---------------------------------------
+
+cluster of containers in Kubernetes
+	A cluster of containers is a set of machine elements that are nodes. Clusters initiate specific routes so that the containers running on the nodes can communicate with each other. In Kubernetes, the container engine (not the server of the Kubernetes API) provides hosting for the API server.
+
+Cloud controller manager:
+	You must have heard about Public, Private and hybrid clouds. With the help of cloud infrastructure technologies, you can run Kubernetes on them. In the context of Cloud Controller Manager, it is the control panel component that embeds the cloud-specific control logic. This process lets you link the cluster into the cloud provider's API and separates the elements that interact with the cloud platform from components that only interact with your cluster. 
+
+	This also enables the cloud providers to release the features at a different pace compared to the main Kubernetes project. It is structured using a plugin mechanism and allows various cloud providers to integrate their platforms with Kubernetes.
+
+recommended security measures:
+	defining resource quotas, support for auditing, restriction of etcd access, regular security updates to the environment, network segmentation, definition of strict resource policies, continuous scanning for security vulnerabilities, and using images from authorized repositories.
+

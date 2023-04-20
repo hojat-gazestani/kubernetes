@@ -1,0 +1,12 @@
+# kubernetes-json-schema
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-en
+spec:
+  selector:
+    app: MYAPP
+  ports:
+  - port: 80
+    targetPort: 80

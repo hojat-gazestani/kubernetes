@@ -1,0 +1,38 @@
+# Schedule a Kubernetes deployment using a container from Google samples
+kubectl create deployment hello-world --image=gcr.io/google-samples/hello-app:1.0
+
+# View all kubernets deployment
+kubectl get deployments
+
+# Get pod info
+kubectl get pods -o wide
+
+# Scale up the replica set to 4
+kubectl scale --replicas=4 deployment/hello-world
+
+# Get pod info
+kubectl get pods -o wide
+
+# Run the service
+curl http://<POD-IP>:8080
+
+vim hello-world-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+	name: hello-world
+spec:
+	replicas: 4
+	selector:
+		matchLabels:
+			app: hello-world
+		template:
+			metadata:
+				labels:
+					app: hello-world
+			spec:
+				containers:
+				-  name: hello-world
+					image: hello-world
+					ports:
+					- containerPort: 8080
