@@ -1,0 +1,13 @@
+kubectl config get-clusters
+kubectl config get-contexts
+
+docker build -t us.icr.io/$MY_NAMESPACE/hello-world:1 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:1
+
+kubectl apply -f hello-world-apply.yaml
+kubectl expose deployment/hello-world
+kubectl get services
+kubectl proxy
+curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+for i in `seq 10`; do curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy; done
+
+kubectl delete deployment/hello-world service/hello-world
