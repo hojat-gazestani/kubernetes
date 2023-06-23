@@ -12,16 +12,14 @@ overlay
 br_netfilter
 EOF
 
-# Configure containerd
-sudo -i
-mkdir -p /etc/containerd
-containerd config default>/etc/containerd/config.toml
-
-
 # Install containerd
 sudo apt update
 sudo apt install -y containerd.io
 
+# Configure containerd
+sudo -i
+mkdir -p /etc/containerd
+containerd config default>/etc/containerd/config.toml
 
 # restart containerd
 sudo systemctl restart containerd

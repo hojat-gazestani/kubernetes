@@ -239,8 +239,8 @@ exit
 
 sudo sysctl --system
 
-sudo modeprobe overlay
-sudo modeprobe br_netfilter
+sudo modprobe overlay
+sudo modprobe br_netfilter
 
 sudo vim /etc/fstab
 # comment out "/swap.img"

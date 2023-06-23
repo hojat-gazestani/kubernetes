@@ -3,6 +3,10 @@
 sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 sudo swapoff -a
 
+
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
